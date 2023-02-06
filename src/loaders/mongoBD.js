@@ -5,8 +5,8 @@ const app = require('../app')
 
 mongoose.set("strictQuery", true)
 
-const user = process.env.BD_User
-const password = process.env.BD_Password
+const user = 'ericksousa312'
+const password = 'mssg170877'
 const url = `mongodb+srv://${user}:${password}@clusterick.g3gnoap.mongodb.net/bancoapi?retryWrites=true&w=majority`
 
 async function startDB(){
@@ -19,7 +19,7 @@ async function startDB(){
         app.listen(3000)
     )
     .catch(
-        error=>console.log(err)
+        error=>console.log(error)
     )
 }
 
