@@ -1,33 +1,34 @@
 const Person = require('../models/Person')
 
-class PersonController{
-    async post(req, res){
-    //req.body
-    const{nome,idade,salario}=req.body
-    //validação
-    if(!nome){
-        res.status(442).json({erro: "Nome é obrigatório"})
-    }
-    const person={
-        nome,
-        idade,
-        salario
-    }
-    try {
-        //inserção de uma pessoa
-        await Person.create(person)
-        res.status(201).json({message:"pessoa inserida com sucesso"})
-    } catch (error) {
-        res.status(500).json({error:error})
-    }
+class PersonController {
+    async post(req, res) {
+        //req.body
+        const { nome, idade, salario } = req.body
+        //validação tanto por aqui quando por model
+        if (!nome) {
+            res.status(442).json({ erro: "Nome é obrigatório" })
+        }
+        const person = {
+            nome,
+            idade,
+            salario
+        }
+        try {
+            //inserção de uma pessoa
+            await Person.create(person)
+            res.status(201).json({ message: "pessoa inserida com sucesso" })
+        } catch (error) {
+            res.status(500).json({ error: error.message })
+        }
     }
 
-    async get(req, res){
+    async get(req, res) {
+        console.log("requição realizada")
         try {
             const people = await Person.find()
             res.status(200).json(people)
         } catch (error) {
-            res.status(500).json({error:error})
+            res.status(500).json({  error: error.message })
         }
     }
 
@@ -44,7 +45,7 @@ class PersonController{
             }
             res.status(200).json(people)
         } catch (error) {
-            res.status(500).json({ error: error })
+            res.status(500).json({  error: error.message })
         }
     }
 
@@ -69,7 +70,7 @@ class PersonController{
             //retorna o resgistro
             res.status(201).json(people)
         } catch (error) {
-            res.status(500).json({ error: error })
+            res.status(500).json({  error: error.message })
         }
     }
 
@@ -85,8 +86,8 @@ class PersonController{
         try {
             await Person.deleteOne({ _id: id })
             res.status(201).json({ msg: "Úsuario deletado" })
-        } catch (err) {
-            res.status(500).json({ err: err })
+        } catch (error) {
+            res.status(500).json({ error: error.message })
         }
 
 
