@@ -3,6 +3,7 @@ const Person = require ('../Controllers/PersonController')
 const Associado = require ('../Controllers/AssociadoController')
 const Plano = require('../Controllers/PlanoController')
 const Atletica = require('../Controllers/AtleticaController')
+const Livro = require('../Controllers/LivroController')
 
 //rotas person
 routes.get('/person',Person.get)
@@ -21,5 +22,8 @@ routes.post('/plano', Plano.post)
 
 //Rota Atletica
 routes.post('/atletica', Atletica.post)
+
+routes.post('/livros', Livro.Post)
+routes.get('/livros', Livro.get)
 
 module.exports = routes;
